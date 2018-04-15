@@ -678,9 +678,16 @@
 
   let activeInstances = [];
   let raf = 0;
-
   const engine = (() => {
-    function play() { raf = AFRAME.scenes[0].effect.requestAnimationFrame(step); };
+    function play() { 
+       navigator.getVRDisplays().then((display) => {
+        if(display.length == 0){
+          requestAnimationFrame(step);
+        } else {
+          display[0].requestAnimationFrame(step);
+        }
+      });
+    }
     function step(t) {
       const activeLength = activeInstances.length;
       if (activeLength) {
