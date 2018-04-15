@@ -681,7 +681,7 @@
   const engine = (() => {
     function play() { 
        navigator.getVRDisplays().then((display) => {
-        if(display === []){
+        if(display.length == 0){
           requestAnimationFrame(step);
         } else {
           display[0].requestAnimationFrame(step);
