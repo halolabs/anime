@@ -680,7 +680,7 @@
   let raf = 0;
 
   const engine = (() => {
-    function play() { raf = AFRAME.scenes[0].effect.requestAnimationFrame(step); };
+    function play() { raf = navigator.getVRDisplays().then((display) => display[0].requestAnimationFrame(step)); };
     function step(t) {
       const activeLength = activeInstances.length;
       if (activeLength) {
